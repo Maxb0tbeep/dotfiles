@@ -1,0 +1,93 @@
+* {
+	font-family: "CaskaydiaCove Nerd Font";
+	font-size: 13px;
+}
+
+window#waybar {
+	background: #1e2030;
+  border-radius: 7px;
+	min-height: 0;
+}
+
+/* Groups */
+
+.modules-left, .modules-center, .modules-right {
+	/* border: #6900ff 2px solid; */
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+	background: #1e2030;
+}
+
+
+/* Label Customization */
+
+label, button {
+	padding: 0 5px;
+}
+
+button label {
+	border: none;
+	background: transparent;
+	padding: 0;
+}
+
+/* Module Customization */
+
+#workspaces {
+	background: transparent;
+}
+
+#workspaces button {
+	color: #d8dee9;
+	margin: 0;
+	padding: 2 2px;
+}
+
+#workspaces button.active {
+	color: #81a1c1;
+}
+
+#window {
+  color: #e5e9f0;
+}
+
+#clock {
+	color: #e5e9f0;
+}
+
+#idle_inhibitor {
+	color: #d8dee9;
+}
+
+#pulseaudio.output {
+	color: #ff2160;
+}
+
+#disk {
+  color: #ff21a6;
+}
+
+#memory {
+	color: #de21ff;
+}
+
+#cpu {
+  color: #9621FF
+}
+
+#temperature {
+	color: #7221ff;
+}
+
+#network {
+	color: #3321ff;
+}
+
+#tray {
+	color: #eceff4;
+}
+
+#custom-logout {
+	color: #eceff4;
+	font-size: 12px;
+}

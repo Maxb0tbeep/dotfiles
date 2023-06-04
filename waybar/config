@@ -1,0 +1,137 @@
+{
+	"layer": "top",
+	"potition": "top",
+	"height": 32,
+	"modules-left": ["wlr/workspaces", "hyprland/window", "custom/spotify"],
+	"modules-center": ["clock", "custom/weather"],
+	"modules-right": ["pulseaudio#output", "disk", "memory", "cpu", "temperature", "network", "custom/divider", "tray"],
+
+	// Left Modules
+	"wlr/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"on-click": "activate",
+		"separate-outputs": false,
+		"sort-by-number": true,
+    "persistent_workspaces": {
+			"1": [],
+			"2": [],
+			"3": [],
+			"4": [],
+			"5": [],
+			"6": [],
+			"7": [],
+			"8": [],
+			"9": [],
+			"10": []
+       }
+	},
+
+	"hyprland/window": {
+		"format": "|   {}",
+		"rewrite": {
+			"(.*)Mozilla Firefox": "󰈹 Firefox",
+      "(.*)Discord": "󰙯 Discord",
+		  "(.*)Spotify": " Spotify",
+      "(.*)Steam": "󰓓 Steam",
+      "(.*)Visual Studio Code": "󰨞 Visual Studio Code",
+      "(.*)Dolphin": "󰉋 Dolphin",
+      "(.*)Minecraft Launcher": "󰍳 Minecraft Launcher",
+      "(.*)Blender": "󰂫 Blender",
+      "Unity Hub(.*)": "󰚯 Unity Hub",
+      "max@Royal-Cat-PC:~": " Kitty",
+      "nvim(.*)": " Neovim",
+      "vim(.*)": " Vim",
+    }
+	},
+
+  "custom/spotify": {
+    "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "format": "|   {}",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+
+	// Center Modules 
+
+	"clock": {
+		"interval": 1,
+		"format": "{:%X | %A, %B, %d, %Y}  |",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	},
+
+  "custom/weather": {
+    "exec": "python ~/.config/waybar/scripts/weather.py",
+    "restart-interval": 300,
+    "return-type": "json",
+    "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/$(location_id)"
+    // "format-alt": "{alt}",
+  }, 
+
+	// Right Modules
+    "pulseaudio#output": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{icon} {volume}%",
+        //"format-bluetooth": "{volume}% {icon}  {format_source}",
+        //"format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "󰋋 ",
+            "hands-free": "וֹ",
+            "headset": "  ",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+    },
+
+    "disk": {
+      "interval": 30,
+      "format": "󰇅  {percentage_used}%",
+      "path": "/"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": " {}%", 
+        "on-click": "kitty -e 'btop'", 
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "cpu": {
+      "interval": 1,
+      "format": "󰍛 {usage}%",
+      "max-length": 10,
+    },
+
+  	"temperature": {
+	  	"interval": 1,
+      "critical-threshold": 80,
+      "format-critical": "󰸁 {temperatureC}°C",
+		  "format": " {temperatureC}°C",
+	  }, 
+
+    "network": {
+        "format": "󱘖 {ipaddr}",
+        "tooltip-format": " {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "interval": 1,
+    },
+
+    "custom/divider": {
+      "format": "|",
+    },
+
+	  "tray": {
+		  "spacing": 4,
+	  }
+}
