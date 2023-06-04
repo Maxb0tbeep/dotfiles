@@ -1,22 +1,22 @@
 sort=-time
 layer=overlay
-background-color=#2e3440
+background-color=#1e2030
 width=300
 height=110
 border-size=2
-border-color=#88c0d0
+border-color=#6900ff
 border-radius=8
 default-timeout=6000
 ignore-timeout=1
 
 [urgency=low]
-border-color=#cccccc
+border-color=#6900ff
 
 [urgency=normal]
-border-color=#d08770
+border-color=#b200ff
 
 [urgency=high]
-border-color=#bf616a
+border-color=#ff00dc
 default-timeout=0
 
 [category=mpd]
