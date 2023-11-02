@@ -4,18 +4,22 @@
 }
 
 window#waybar {
-	background: #1e2030;
-  border-radius: 7px;
+	background: transparent;
+  border-radius: 10px;
 	min-height: 0;
 }
 
 /* Groups */
 
 .modules-left, .modules-center, .modules-right {
-	/* border: #6900ff 2px solid; */
+  border: #c6a0f6 1.8px solid;
+  border-radius: 10px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-	background: #1e2030;
+	background: #24273a;
+  padding: 2px 10px;
+  margin: 0px 10px;
+  margin-top: 10px;
 }
 
 
@@ -40,7 +44,7 @@ button label {
 #workspaces button {
 	color: #d8dee9;
 	margin: 0;
-	padding: 2 2px;
+	padding: 2px 2px;
 }
 
 #workspaces button.active {

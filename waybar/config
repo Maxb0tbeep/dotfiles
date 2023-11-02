@@ -2,12 +2,12 @@
 	"layer": "top",
 	"potition": "top",
 	"height": 32,
-	"modules-left": ["wlr/workspaces", "hyprland/window", "custom/spotify"],
+	"modules-left": ["hyprland/workspaces", "hyprland/window", "custom/spotify"],
 	"modules-center": ["clock", "custom/weather"],
-	"modules-right": ["pulseaudio#output", "disk", "memory", "cpu", "temperature", "network", "custom/divider", "tray"],
+	"modules-right": ["pulseaudio#output", "custom/pipewire", "disk", "memory", "cpu", "temperature", "network", "custom/divider", "tray"],
 
 	// Left Modules
-	"wlr/workspaces": {
+	"hyprland/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": true,
 		"on-click": "activate",
@@ -30,18 +30,20 @@
 	"hyprland/window": {
 		"format": "|   {}",
 		"rewrite": {
-			"(.*)Mozilla Firefox": "󰈹 Firefox",
-      "(.*)Discord": "󰙯 Discord",
-		  "(.*)Spotify": " Spotify",
-      "(.*)Steam": "󰓓 Steam",
-      "(.*)Visual Studio Code": "󰨞 Visual Studio Code",
-      "(.*)Dolphin": "󰉋 Dolphin",
-      "(.*)Minecraft Launcher": "󰍳 Minecraft Launcher",
-      "(.*)Blender": "󰂫 Blender",
-      "Unity Hub(.*)": "󰚯 Unity Hub",
-      "max@Royal-Cat-PC:~": " Kitty",
-      "nvim(.*)": " Neovim",
-      "vim(.*)": " Vim",
+			"(.*)Mozilla Firefox": "|  󰈹 Firefox",
+      "(.*)LibreWolf": "|  󰈹 LibreWolf",
+      "(.*)Discord": "|  󰙯 Discord",
+		  "(.*)Spotify": "|   Spotify",
+      "(.*)Steam": "|  󰓓 Steam",
+      "(.*)Visual Studio Code": "|  󰨞 Visual Studio Code",
+      "(.*)Dolphin": "|  󰉋 Dolphin",
+      "(.*)Minecraft Launcher": "|  󰍳 Minecraft Launcher",
+      "(.*)Blender": "|  󰂫 Blender",
+      "Unity Hub(.*)": "|  󰚯 Unity Hub",
+      "Unity(.*)": "|  󰚯 Unity Editor",
+      "(.*)max@Royal-Cat-PC(.*)": "|   Kitty",
+      "nvim(.*)": "|   Neovim",
+      "vim(.*)": "|   Vim",
     }
 	},
 
@@ -71,26 +73,28 @@
   }, 
 
 	// Right Modules
-    "pulseaudio#output": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{icon} {volume}%",
-        //"format-bluetooth": "{volume}% {icon}  {format_source}",
-        //"format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": "",
-        "format-icons": {
-            "headphone": "󰋋 ",
-            "hands-free": "וֹ",
-            "headset": "  ",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [""]
-        },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+  "pipewire#output": {
+    "scroll-step": 5,
+    "format": " {volume}%aaa",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+    "exec": "pactl info | awk -F': ' '/Default Sink/ { print $2 }'"
+  },
+
+  "custom/pipewire": {
+    "format": "{icon}",
+    "return-type": "json",
+    "signal": 8,
+    "interval": "once",
+    "format-icons": {
+        "mute": "",
+        "default": ["", "", "", ""],
     },
+    "exec": "pw-volume status"
+  },
+
 
     "disk": {
       "interval": 30,
